@@ -10,6 +10,7 @@ export const CardsList = () => {
 		});
 		return ind !== undefined ? data?.[i].images?.indexOf(ind) : undefined; // Return undefined if not found
 	}
+
 	const [arr] = useState([
 		"Hari Kemerdekaan Indonesia ke 77",
 		"Sejarah Lahirnya Bangsa Indonesia",
