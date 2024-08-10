@@ -1,4 +1,9 @@
-/** @format */
+/* General reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
 header {
 	top: 0;
@@ -7,8 +12,7 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	box-sizing: border-box;
-	width: 100vw;
+	width: 100%;
 	height: 12vh;
 	border-bottom: 1px solid #ff4081;
 	font-weight: bold;
@@ -21,10 +25,10 @@ header {
 	background-color: rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(10px);
 	padding: 16px;
-
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 	text-transform: capitalize;
 }
+
 header:hover {
 	font-variant: small-caps;
 	letter-spacing: 15px;
@@ -42,6 +46,8 @@ main {
 	flex-wrap: wrap;
 	justify-content: center;
 	background-color: #f5f5f5;
+	padding-top: 12vh;
+	/* Offset for fixed header */
 }
 
 .card {
@@ -53,7 +59,11 @@ main {
 	cursor: pointer;
 	transition: transform 0.2s, box-shadow 0.2s;
 	border: 1px dotted dodgerblue;
+	width: 100%;
+	max-width: 400px;
+	/* Limiting the max width for better design */
 }
+
 .card::before {
 	content: "";
 	position: absolute;
@@ -65,6 +75,7 @@ main {
 	backdrop-filter: blur(10px);
 	z-index: -1;
 }
+
 .card:hover {
 	background-color: #e0e0e0;
 	transform: translateY(-5px);
@@ -75,37 +86,56 @@ main {
 	width: 100%;
 	max-height: 45vh;
 	object-fit: cover;
+	border-radius: 8px 8px 0 0;
+	/* Smooth corners */
 }
+
 .card-title {
 	padding: 1rem;
 	font-size: 1.2rem;
 	text-align: center;
+	color: #333;
+	background-color: #f0f0f0;
+	border-radius: 0 0 8px 8px;
+	/* Smooth corners */
 }
 
+/* Responsive design adjustments */
 @media screen and (max-width: 880px) {
 	.card {
 		width: 45%;
 	}
 }
 
+@media screen and (max-width: 480px) {
+	.card {
+		width: 100%;
+		margin: 10px 0;
+		/* Adjust margin for mobile view */
+	}
+}
+
 .blog-img {
-	background-image: url("../public/blog1.jpg");
+	background-image: url("/blog1.jpg");
 	width: 100%;
 	height: 100vh;
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: cover;
+	background-position: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-family: "Poppins";
+	font-family: "Poppins", sans-serif;
 	font-weight: bold;
 	position: relative;
 }
+
 @media (max-width: 1024px) {
 	.blog-img {
 		height: 70vh;
 	}
 }
+
 @media (max-width: 768px) {
 	.blog-img {
 		height: 50vh;
