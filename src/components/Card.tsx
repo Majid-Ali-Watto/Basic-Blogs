@@ -15,6 +15,7 @@ export const Card = (props: Props): React.ReactElement => {
 			className="card"
 			onClick={() => {
 				setTitle(props.title);
+				sessionStorage.setItem('blog', 'true')
 				navigate("/blog");
 			}}
 		>

@@ -3,6 +3,8 @@
 import data from "../assets/data";
 import { useEffect, useState } from "react";
 import './blog-page.css'
+import { useNavigate } from 'react-router-dom';
+
 interface Props {
 	blogTitle: string | number;
 }
@@ -11,6 +13,22 @@ export const BlogPage = (props: Props): React.JSX.Element => {
 	const [blogs, setBlogs] = useState<string[]>([]);
 	const [images, setImages] = useState<string[]>([]);
 	const [subtitle, setSubTitle] = useState<string>("");
+	const navigate = useNavigate();
+
+
+	useEffect(() => {
+		const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+		const isPageReload = navigationEntries[0]?.type === "reload";
+		const res = sessionStorage.getItem('blog');
+
+		if (isPageReload && res == null) {
+			// Navigate to the home page on page refresh
+			navigate('/');
+		} else {
+			// If the page is loaded without a refresh or after navigating elsewhere, clear the session storage
+			sessionStorage.removeItem('blog');
+		}
+	}, [navigate]);
 
 	function findBlog(blogTitle: string | number): string[] | undefined {
 		const blogT = data.find((blog) => blog.title === blogTitle);
