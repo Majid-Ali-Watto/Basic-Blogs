@@ -1,6 +1,7 @@
 /** @format */
 import { lazy, Suspense, useState } from "react";
-
+// @ts-ignore
+import { Loader } from 'circle-loader';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Home = lazy(() => import("./pages/Home"));
 const BlogPage = lazy(() => import("./pages/blog-page"));
@@ -11,7 +12,7 @@ function App() {
 		{
 			path: "/",
 			element: (
-				<Suspense>
+				<Suspense fallback={Loader.start('')}>
 					<Home />
 				</Suspense>
 			),
@@ -19,7 +20,7 @@ function App() {
 		{
 			path: "/blog",
 			element: (
-				<Suspense>
+				<Suspense fallback={Loader.start('')}>
 					<BlogPage blogTitle={title} />
 				</Suspense>
 			),

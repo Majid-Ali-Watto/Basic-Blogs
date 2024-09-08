@@ -4,6 +4,8 @@ import data from "../assets/data";
 import { useEffect, useState } from "react";
 import './blog-page.css'
 import { useNavigate } from 'react-router-dom';
+// @ts-ignore
+import { Loader } from 'circle-loader';
 
 interface Props {
 	blogTitle: string | number;
@@ -15,7 +17,9 @@ export const BlogPage = (props: Props): React.JSX.Element => {
 	const [subtitle, setSubTitle] = useState<string>("");
 	const navigate = useNavigate();
 
-
+	useEffect(() => {
+		Loader.close()
+	}, [])
 	useEffect(() => {
 		const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
 		const isPageReload = navigationEntries[0]?.type === "reload";

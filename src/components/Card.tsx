@@ -10,6 +10,7 @@ interface Props {
 export const Card = (props: Props): React.ReactElement => {
 	const navigate = useNavigate();
 	const { setTitle } = useTitleContext();
+	console.log(props.url)
 	return (
 		<figure
 			className="card"
